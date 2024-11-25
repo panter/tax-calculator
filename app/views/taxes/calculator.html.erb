@@ -1,0 +1,5 @@
+<%= form_tag(calculate_tax_path) do |form| %>
+  <%= label_tag :income, "Income" %>
+  <%= text_field_tag(:income) %>
+  <%= submit_tag('calculate') %>
+<% end %>
