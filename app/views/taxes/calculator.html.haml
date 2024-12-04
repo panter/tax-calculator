@@ -1,0 +1,20 @@
+%h1 Tax Calculator
+-# = render partial: 'instructions'
+= form_with url: { controller: 'taxes', action: 'calculate' } do |f|
+  = f.label :income, class: 'my-label'
+  %br
+  = f.number_field :income, step: 0.01, class: 'my-input'
+  %br
+  = f.submit 'Calculate', class: 'my-submit'
+
+- if @taxes.present?
+  - if @taxes.valid?
+    %p.income
+      = 'Your entered income was:'
+      = human_readable_number(@taxes.income)
+    %p.total-tax
+      = 'Your total tax is:'
+      = human_readable_number(@taxes.calculate)
+  - else
+    %p.validation-error
+      = "You entered: \"#{human_readable_number(@taxes.income)}\". #{@taxes.errors.full_messages.last}."

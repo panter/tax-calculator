@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get '', to: 'taxes#calculator'
+  post '', to: 'taxes#calculate'
 
   resource :tax, only: [] do
-    post :calculate
+    get :calculator
   end
+
+  root 'taxes#calculator'
 end
